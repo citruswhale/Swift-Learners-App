@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var learnerViewModel = LearnersViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+        NavigationView {
+            List {
+                ForEach(learnerViewModel.learners) {
+                    learner in
+                    
+                    HStack {
+                        Image(systemName: "person.fill")
+                            .foregroundStyle(learner.colour)
+                        Text(learner.name + " " + learner.surname)
+                        Text(learner.emoji)
+                    }
+                }
+            }.navigationTitle("Learners")
         }
-        .padding()
     }
 }
 
